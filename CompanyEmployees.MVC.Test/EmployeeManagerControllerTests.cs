@@ -28,7 +28,7 @@ namespace CompanyEmployees.MVC.Test
         public void Index_ReturnsAViewResult_WithListOfEmployees()
         {
             //Arrange
-            mockRepo.Setup(repo => repo.Employee.GetAllEmployees(false))
+            mockRepo.Setup(repo => repo.Employee.GetAllEmployeesAsync(false).Result)
                 .Returns(SeedTestData.GetTestEmployees());
             var controller = new EmployeeManagerController(mockRepo.Object);
 
@@ -36,8 +36,8 @@ namespace CompanyEmployees.MVC.Test
             var result = controller.Index();
 
             //Assert
-            Assert.IsInstanceOf<ViewResult>(result);
-            ViewResult viewResult = result as ViewResult; //casting, kan ook via (ViewResult)result
+            Assert.IsInstanceOf<ViewResult>(result.Result);
+            ViewResult viewResult = result.Result as ViewResult; //casting, kan ook via (ViewResult)result
             Assert.IsAssignableFrom<List<Employee>>(viewResult.ViewData.Model);
             List<Employee> model = viewResult.ViewData.Model as List<Employee>;
             Assert.AreEqual(2, model.Count());

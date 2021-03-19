@@ -74,9 +74,9 @@ namespace CompanyEmployees.MVC.Controllers
             }
             return View(model);
         }
-        private void FillEmployeesForCompany(Guid companyId)
+        private async Task FillEmployeesForCompanyAsync(Guid companyId)
         {
-            List<SelectListItem> employees = (from c in _repositoryManager.Employee.GetAllEmployees(false)
+            List<SelectListItem> employees = (from c in await _repositoryManager.Employee.GetAllEmployeesAsync(false)
                                               where c.CompanyId == companyId
                                               orderby c.Name
                                               select new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
@@ -95,7 +95,7 @@ namespace CompanyEmployees.MVC.Controllers
             //else {
                 ViewBag.Message = "Waarschuwing : U gaat dit bedrijf verwijderen!";
                 Company company = _repositoryManager.Company.GetCompany(id, false);
-                FillEmployeesForCompany(id);
+                FillEmployeesForCompanyAsync(id);
                 return View(company);
            // }
         }

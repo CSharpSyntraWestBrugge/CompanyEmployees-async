@@ -24,9 +24,9 @@ namespace CompanyEmployees.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEmployees()
+        public  async Task<IActionResult> GetEmployees()
         {
-            var employees = _repositoryManager.Employee.GetAllEmployees(false);
+            var employees = await _repositoryManager.Employee.GetAllEmployeesAsync(false);
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
             //var employeesDto = employees.Select(c => new EmployeeDto
             //{

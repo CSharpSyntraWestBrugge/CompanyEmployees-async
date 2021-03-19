@@ -29,7 +29,7 @@ namespace CompanyEmployees.MVC.Test
                     var countEmployeesInDb = context.Employees.Count();
 
                     var repository = new RepositoryManager(context);
-                    var emp = repository.Employee.GetAllEmployees(false);
+                    var emp = repository.Employee.GetAllEmployeesAsync(false).Result;
                     Assert.IsNotNull(emp);
                     Assert.AreEqual(countEmployeesInDb, emp.Count());
                 }
