@@ -14,7 +14,8 @@ namespace TestWebAPIConsole
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            Task<string> result = client.GetStringAsync("https://localhost:44301/api/companies"); 
+            //Task<string> result = client.GetStringAsync("https://localhost:44301/api/companies"); 
+            Task<string> result = client.GetStringAsync("https://localhost:44301/api/employees");  
             string stringResult = result.Result;
             Console.WriteLine(stringResult);
             Console.ReadKey();
