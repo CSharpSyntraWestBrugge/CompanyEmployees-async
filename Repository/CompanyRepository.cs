@@ -1,10 +1,12 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Repository
 {
@@ -24,9 +26,9 @@ namespace Repository
             Delete(company);
         }
 
-        public IEnumerable<Company> GetAllCompanies(bool trackChanges)
+        public async Task<IEnumerable<Company>> GetAllCompaniesAsync(bool trackChanges)
         {
-            return FindAll(false).OrderBy(c => c.Name).ToList();
+            return await FindAll(false).OrderBy(c => c.Name).ToListAsync();
         }
 
         public Company GetCompany(Guid companyId, bool trackChanges)

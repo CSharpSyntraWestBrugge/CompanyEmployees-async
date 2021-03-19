@@ -31,16 +31,16 @@ namespace CompanyEmployees.MVC.Controllers
             var employee = _repositoryManager.Employee.GetEmployee(id,false);
             return View(employee);
         }
-        private void FillCompanies()
+        private async Task FillCompaniesAsync()
         {
-            List<SelectListItem> companies = (from c in _repositoryManager.Company.GetAllCompanies(false)
+            List<SelectListItem> companies = (from c in await _repositoryManager.Company.GetAllCompaniesAsync(false)
                                               orderby c.Name
                                               select new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
             ViewBag.Companies = companies;
         }
         public IActionResult Insert()
         {
-            FillCompanies();
+            FillCompaniesAsync();
             return View();
         }
         [HttpPost]
@@ -53,13 +53,13 @@ namespace CompanyEmployees.MVC.Controllers
                 _repositoryManager.Save();
                 ViewBag.Message = "Werknemer toegevoegd";
             }
-            FillCompanies();
+            FillCompaniesAsync();
             return View(model);
         }
 
         public IActionResult Update(Guid id)
         {
-            FillCompanies();
+            FillCompaniesAsync();
 
             Employee model = _repositoryManager.Employee.GetEmployee(id, false);
 
@@ -70,7 +70,7 @@ namespace CompanyEmployees.MVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Update(Employee model)
         {
-            FillCompanies();
+            FillCompaniesAsync();
 
             if (ModelState.IsValid)
             {

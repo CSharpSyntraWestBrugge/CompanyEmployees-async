@@ -21,7 +21,7 @@ namespace CompanyEmployees.MVC.Test
         public void Initialize()
         {
             mockRepo = new Mock<IRepositoryManager>();
-            mockRepo.Setup(repo => repo.Company.GetAllCompanies(false))
+            mockRepo.Setup(repo => repo.Company.GetAllCompaniesAsync(false).Result)
                 .Returns(SeedTestData.GetTestCompanies());
         }
         [Test]

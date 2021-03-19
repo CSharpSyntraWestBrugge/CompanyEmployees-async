@@ -21,7 +21,7 @@ namespace CompanyEmployees.MVC.Test
         public void Initialize()
         {
             mockRepo = new Mock<IRepositoryManager>();
-            mockRepo.Setup(repo => repo.Company.GetAllCompanies(false))
+            mockRepo.Setup(repo => repo.Company.GetAllCompaniesAsync(false).Result)
                 .Returns(SeedTestData.GetTestCompanies());
         }
         [Test]
@@ -38,8 +38,8 @@ namespace CompanyEmployees.MVC.Test
             var result = controller.Index();
 
             // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
-            var viewResult = result as ViewResult;
+            Assert.IsInstanceOf<ViewResult>(result.Result);
+            var viewResult = result.Result as ViewResult;
             Assert.IsAssignableFrom<List<Company>>(
                  viewResult.ViewData.Model);
             var model = viewResult.ViewData.Model as List<Company>;

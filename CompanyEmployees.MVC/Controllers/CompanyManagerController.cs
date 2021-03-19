@@ -21,9 +21,9 @@ namespace CompanyEmployees.MVC.Controllers
             _repositoryManager = repositoryManager;
         }
         [AllowAnonymous]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var companies = _repositoryManager.Company.GetAllCompanies(false);
+            var companies = await _repositoryManager.Company.GetAllCompaniesAsync(false);
             return View(companies);
         }
         [AllowAnonymous]

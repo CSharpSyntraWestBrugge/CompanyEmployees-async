@@ -190,7 +190,7 @@ namespace CompanyEmployees.MVC.Test
                     var countCompaniesInDb = context.Companies.Count();
 
                     var repository = new RepositoryManager(context);
-                    var comp = repository.Company.GetAllCompanies(false);
+                    var comp = repository.Company.GetAllCompaniesAsync(false).Result;
                     Assert.IsNotNull(comp);
                     Assert.AreEqual(countCompaniesInDb, comp.Count());
                 }
