@@ -1,0 +1,12 @@
+﻿body {
+    font-family:Verdana;
+    background-color:lightblue
+}
+
+h2 {
+    color:red;
+    font-style:italic
+}
+p {
+    font-variant:small-caps
+}

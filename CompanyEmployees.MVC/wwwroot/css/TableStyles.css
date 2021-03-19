@@ -1,0 +1,23 @@
+﻿table, th, td {
+    border:3px solid blue;
+    border-collapse:collapse;
+    
+}
+table {
+    width:100%
+}
+body {
+    background-color: lavender
+}
+
+th {
+    background-color:pink;
+    color: blue
+}
+
+tr {
+    color: blueviolet
+}
+.message {
+    color:red;
+}

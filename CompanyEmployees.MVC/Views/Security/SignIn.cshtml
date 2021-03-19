@@ -1,0 +1,42 @@
+﻿@model SignIn
+
+
+<h2>Inloggen</h2>
+<form asp-controller="Security" asp-action="SignIn" method="post">
+    <table>
+        <tr>
+            <td class="right"><label asp-for="UserName"></label> :</td>
+            <td class="left"><input type="text" asp-for="UserName" /></td>
+        </tr>
+        <tr>
+            <td class="right"><label asp-for="Password"></label> :</td>
+            <td class="left">
+                <input type="password" asp-for="Password" id="password" name="password" data-toggle="password"/><i id="togglePassword" class="fa fa-eye"></i>
+            </td>
+        </tr>
+        <tr>
+            <td class="right"><label asp-for="RememberMe"></label> :</td>
+            <td class="left"><input type="checkbox" asp-for="RememberMe" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Inloggen</button>
+            </td>
+        </tr>
+    </table>
+    <div asp-validation-summary="All" class="message"></div>
+
+    <h3><a asp-controller="security" asp-action="register">Nieuwe gebruikersaccount</a></h3>
+
+</form>
+<script type="text/javascript">
+    var togglePassword = document.querySelector('#togglePassword');
+    var password = document.querySelector('#password');
+    togglePassword.addEventListener('click', function (e) {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
+
+

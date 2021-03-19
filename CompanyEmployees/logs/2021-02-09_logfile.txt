@@ -1,0 +1,4 @@
+2021-02-09 12:32:44.2096 DEBUG Log Debug in Get() from WeatherForecastController
+2021-02-09 12:32:44.2533 ERROR Log Error in Get() from WeatherForecastController
+2021-02-09 12:32:44.2732 INFO Log Info in Get() from WeatherForecastController
+2021-02-09 12:32:44.2732 WARN Log Warning in Get() from WeatherForecastController

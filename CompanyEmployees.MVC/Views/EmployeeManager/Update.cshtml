@@ -1,0 +1,84 @@
+﻿@model Employee
+<h2>Wijzig bestaande werknemer</h2>
+<h3 class="message">@ViewBag.Message</h3>
+
+<form asp-controller="EmployeeManager" asp-action="Update" method="post">
+
+    <table border="0">
+        <tr>
+            <td class="right">
+                <label asp-for="Id"></label> :
+            </td>
+            <td>
+                <input type="hidden" asp-for="Id" />
+                <span>@Model.Id</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Name"></label>:
+            </td>
+            <td>
+                <input type="text" asp-for="Name" />
+                <span asp-validation-for="Name" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Age"></label>:
+            </td>
+            <td>
+                <input type="number" asp-for="Age" />
+                <span asp-validation-for="Age" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Gender"></label>:
+            </td>
+            <td>
+                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<GeslachtType>()">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Position"></label>:
+            </td>
+            <td>
+                <input type="text" asp-for="Position" />
+                <span asp-validation-for="Position" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="CompanyId"></label>:
+            </td>
+            <td>
+                <select asp-for="CompanyId" asp-items="@ViewBag.Companies">
+                    <option value="">Selecteer</option>
+                </select>
+                <span asp-validation-for="CompanyId" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Description"></label>:
+            </td>
+            <td>
+                <textarea asp-for="Description" maxlength="500" rows="5"> </textarea>
+                <span asp-validation-for="Description" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Bewaar</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+<br />
+<br />
+<a asp-controller="employeemanager" asp-action="Index">Terug naar lijst werknemers</a>
+

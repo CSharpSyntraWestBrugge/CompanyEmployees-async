@@ -1,0 +1,33 @@
+﻿@model Register
+
+<h2>Nieuwe gebruikersaccount aanmaken</h2>
+<form asp-controller="Security" asp-action="Register" method="post" asp-antiforgery="true">
+    <table>
+        <tr>
+            <td class="right"><label asp-for="UserName"></label> :</td>
+            <td class="left"><input type="text" asp-for="UserName" /></td>
+        </tr>
+        <tr>
+            <td class="right"><label asp-for="Password"></label> :</td>
+            <td class="left"><input type="password" asp-for="Password" /></td>
+        </tr>
+        <tr>
+            <td class="right"><label asp-for="ConfirmPassword"></label> :</td>
+            <td class="left"><input type="password" asp-for="ConfirmPassword" /></td>
+        </tr>
+        <tr>
+            <td class="right"><label asp-for="Email"></label> :</td>
+            <td class="left"><input type="text" asp-for="Email" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Aanmaken</button>
+            </td>
+        </tr>
+    </table>
+    <div asp-validation-summary="All" class="message"></div>
+
+    <h3><a asp-controller="Security" asp-action="SignIn">Ga naar login pagina</a></h3>
+
+</form>
+

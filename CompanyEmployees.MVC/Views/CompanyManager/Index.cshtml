@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Company>
+@*<h2>Bedrijvenlijst</h2>
+    <h2 class="message">@TempData["Message"]</h2>
+
+    <a asp-controller="companyManager"
+       asp-action="Insert"
+       class="linkbutton">Voeg toe</a>*@
+
+@*@if (!String.IsNullOrEmpty(Context.Request.Query["test"]))
+    {
+        <h1>QueryString Value voor 'test' is @Context.Request.Query["test"]</h1>
+    }
+    else
+    {
+        <h1>Geen QueryString value voor 'test'</h1>
+    }
+
+    @if (!String.IsNullOrEmpty(Context.Request.Query["test2"]))
+    {
+        <h1>QueryString Value voor 'test2' is @Context.Request.Query["test2"]</h1>
+    }
+    else
+    {
+        <h1>Geen QueryString value voor 'test2'</h1>
+    }
+
+    @{
+
+        string helloWorld = "Goedendag!";
+
+        if (DateTime.Now.Hour > 11)
+        {
+            helloWorld = "Goedemiddag!";
+        }
+        else if (DateTime.Now.Hour > 13)
+        {
+            helloWorld = "Goede namiddag";
+        }
+        else if (DateTime.Now.Hour > 18)
+        {
+            helloWorld = "Goedenavond";
+        }
+    }
+
+    @if (DateTime.IsLeapYear(DateTime.Now.Year))//Is het een schrikkeljaar?
+    {
+        <h1>Het jaar @DateTime.Now.Year.ToString() is een schrikkeljaar</h1>
+
+    }
+    else
+    {
+        <h1>Het jaar @DateTime.Now.Year.ToString() is geen schrikkeljaar</h1>
+    }
+    <ul>
+        @for (int i = 0; i < Model.ToList().Count; i++)
+        {
+            var item = Model.ToList()[i];
+            <li>@item.Name</li>
+
+        }
+    </ul>
+
+    <br />
+    <ol>
+        @{
+
+            int teller = 0;
+        }
+        @while (teller < Model.ToList().Count)
+        {
+            var item = Model.ToList()[teller++];
+            <li>@item.Name</li>
+        }
+    </ol>
+    <br />
+    @switch (DateTime.Now.DayOfWeek)
+    {
+        case DayOfWeek.Monday:
+            <h2>baaldag</h2>
+            break;
+        case DayOfWeek.Sunday:
+            <h2>Wandeldag</h2>
+            break;
+        default:
+            <h2>gewone dag</h2>
+            break;
+    }
+    <br />
+    @{
+        void Printgegevens(Company company)
+        {
+            <h2>@company.Name  Adres: @company.Address land: @company.Country</h2>
+        }
+
+    }
+
+    @foreach(Company company in Model)
+    {
+        Printgegevens(company);
+
+    }
+    <br />
+    <h1>@DateTime.Now.Hour.ToString() </h1>
+    <h1>@helloWorld</h1>*@
+
+<br />
+<br />
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info"> Lijst van bedrijven</h2>
+        </div>
+        <div class="col-6 text-right">
+            <partial name="_CreateButtonPartial" />
+        </div>
+    </div>
+    <br />
+    <div>
+
+        <table class="table table-striped border">
+
+            <tr class="table-secondary">
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Address)</th>
+                <th>@Html.DisplayNameFor(model => model.Country)</th>
+                <th>@Html.DisplayNameFor(model => model.LaunchDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Size)</th>
+                <th colspan="3" align="center">Acties</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Address</td>
+            <td>@item.Country</td>
+            <td>@item.LaunchDate?.ToString("dd/MM/yyyy")</td>
+            <td>@item.Size.ToString()</td>
+            <td>
+                <a asp-controller="companyManager"
+                   asp-action="Details"
+                   asp-route-id="@item.Id" class="linkbutton">Details</a>
+            </td>
+            <td>
+                <a asp-controller="companyManager"
+                   asp-action="Update"
+                   asp-route-id="@item.Id" class="linkbutton">Wijzig</a>
+            </td>
+            <td>
+                <a asp-controller="companyManager"
+                   asp-action="Delete"
+                   asp-route-id="@item.Id" class="linkbutton">Verwijder</a>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>

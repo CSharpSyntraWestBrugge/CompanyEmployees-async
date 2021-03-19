@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Employee>
+@*<h2>List of Employees</h2>
+    <h2 class="message">@TempData["Message"]</h2>
+
+    <a asp-controller="employeeManager"
+       asp-action="Insert"
+       class="linkbutton">Insert</a>*@
+
+@*<br />
+
+    @if (!String.IsNullOrEmpty(Context.Request.Query["mijnparam"]))
+    {
+        <b>QueryString Value voor 'mijnparam' is @Context.Request.Query["mijnparam"]</b>
+    }
+    else
+    {
+        <b>Geen QueryString value voor 'mijnparam'</b>
+    }
+    <br />
+    @{
+        void PrintLeeftijdTekst(Employee employee)
+        {
+            int leeftijd = employee.Age;
+            if (leeftijd < 20)
+            {
+                <i>Junior</i>
+            }
+            else if (leeftijd < 50)
+            {
+                <i>Senior</i>
+            }
+            else
+            {
+                <i>Bijna op pensioen</i>
+            }
+
+        }
+
+
+    }
+    <br />
+
+    <ul>
+        @for (int i = 0; i < Model.ToList().Count; i++)
+        {
+            var item = Model.ToList()[i];
+            <li>@item.Name</li>
+
+        }
+    </ul>
+
+    <br />
+    <ol>
+        @{
+
+            int teller = 0;
+        }
+        @while (teller < Model.ToList().Count)
+        {
+            var item = Model.ToList()[teller++];
+            <li>@item.Name</li>
+        }
+    </ol>
+
+    <br />
+    @foreach (Employee employee in Model)
+    {
+
+        PrintLeeftijdTekst(employee);
+        <br />
+    }*@
+
+<br />
+<br />
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info"> Lijst van werknemers</h2>
+        </div>
+        <div class="col-6 text-right">
+            <partial name="_CreateButtonPartial" />
+        </div>
+    </div>
+    <br />
+    <div>
+
+        <table class="table table-striped border">
+
+            <tr class="table-secondary">
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Position)</th>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                <th colspan="3" align="center">Acties</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Position</td>
+            <td>@item.Age</td>
+            <td>@item.Gender.ToString()</td>
+            <td>
+                <a asp-controller="employeeManager"
+                   asp-action="Details"
+                   asp-route-id="@item.Id" class="linkbutton">Details</a>
+            </td>
+            <td>
+                <a asp-controller="employeeManager"
+                   asp-action="Update"
+                   asp-route-id="@item.Id" class="linkbutton">Wijzig</a>
+            </td>
+            <td>
+                <a asp-controller="employeeManager"
+                   asp-action="Delete"
+                   asp-route-id="@item.Id" class="linkbutton">Verwijder</a>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>

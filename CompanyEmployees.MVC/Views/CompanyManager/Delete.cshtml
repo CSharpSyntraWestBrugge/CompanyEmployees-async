@@ -1,0 +1,79 @@
+﻿@model Company
+
+<h2>Verwijder bestaand bedrijf</h2>
+
+<h3 class="message">
+    @ViewBag.Message
+</h3>
+@if (!String.IsNullOrEmpty(Model.Name))
+{
+    <form asp-controller="CompanyManager" asp-action="Delete" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <table border="0">
+            <tr>
+                <td class="right">
+                    <label asp-for="Id"></label> :
+                </td>
+                <td>
+                    @Model.Id
+                </td>
+            </tr>
+            <tr>
+                <td class="right">
+                    <label asp-for="Name"></label> :
+                </td>
+                <td>
+                    @Model.Name
+                </td>
+            </tr>
+            <tr>
+                <td class="right">
+                    <label asp-for="Address"></label> :
+                </td>
+                <td>
+                    @Model.Address
+                </td>
+            </tr>
+            <tr>
+                <td class="right">
+                    <label asp-for="Country"></label> :
+                </td>
+                <td>
+                    @Model.Country
+                </td>
+            </tr>
+            <tr>
+                <td class="right">
+                    <label asp-for="LaunchDate"></label> :
+                </td>
+                <td>
+                    @Model.LaunchDate?.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+            <tr>
+                <td class="right">
+                    <label asp-for="Employees"></label>:
+                </td>
+                <td>
+                    <select asp-for="Employees" asp-items="@ViewBag.Employees" size="5">
+                        <option value="">--werknemers--</option>
+                    </select>
+                    <span asp-validation-for="Employees" class="message"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Verwijder</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+}
+    <br />
+    <br />
+
+    <a asp-controller="CompanyManager" asp-action="Index">Terug naar bedrijvenlijst</a>
+
+

@@ -1,0 +1,81 @@
+﻿@model Entities.Models.Company
+
+<h2>Wijzig bestaand bedrijf</h2>
+<h3 class="message">@ViewBag.Message</h3>
+
+<form asp-controller="CompanyManager" asp-action="Update" method="post" >
+    <table>
+        <tr>
+            <td class="right">
+                <label asp-for="Id"></label> :
+            </td>
+            <td>
+                <input type="hidden" asp-for="Id" />
+                <span>@Model.Id</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Name"></label>:
+            </td>
+            <td>
+                <input type="text" asp-for="Name" />
+                <span asp-validation-for="Name" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Address"></label>:
+            </td>
+            <td>
+                <input type="text" asp-for="Address" />
+                <span asp-validation-for="Address" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Country"></label>:
+            </td>
+            <td>
+                <input type="text" asp-for="Country" />
+                <span asp-validation-for="Country" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="LaunchDate"></label>:
+            </td>
+            <td>
+                <input type="date" asp-for="LaunchDate" asp-format="@Model.LaunchDate?.ToString($"{0:dd/MM/yyyy}")"/>
+                <span asp-validation-for="LaunchDate" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Size"></label>:
+            </td>
+            <td>
+                <select asp-for="Size" asp-items="Html.GetEnumSelectList<CompanySize>()">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                <label asp-for="Description"></label>:
+            </td>
+            <td>
+                <textarea asp-for="Description" maxlength="250" rows="6"> </textarea>
+                <span asp-validation-for="Description" class="message"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Bewaar</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<br />
+<br />
+<a asp-controller="CompanyManager" asp-action="Index">Terug naar bedrijvenlijst</a>
+
