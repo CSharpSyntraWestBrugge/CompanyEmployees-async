@@ -68,7 +68,7 @@ namespace CompanyEmployees.Controllers
         {
             if (companyDto == null)
             {
-                BadRequest("CompanyDto object is empty");
+                return BadRequest("CompanyDto object is empty");
             }
             //To do: het companyDto object omzetten naar een company object
             //2 manieren mogelijk
@@ -101,7 +101,7 @@ namespace CompanyEmployees.Controllers
             companyEntity.Name = companyDto.Name;
             companyEntity.Address = companyDto.Address;
             companyEntity.Country = companyDto.Country;
-            //_mapper.Map(companyDto, companyEntity);
+            //of via mapper:_mapper.Map(companyDto, companyEntity);
             _repositoryManager.Save();
             return Ok(companyEntity);
         }
