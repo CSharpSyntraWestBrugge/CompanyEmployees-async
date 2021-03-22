@@ -57,7 +57,7 @@ namespace CompanyEmployees.Controllers
             var employee = _repositoryManager.Employee.GetEmployee(id, false);
             if (employee == null)
             {
-                NotFound(); // status 404 - not found zonder gegevens teruggeven
+                return NotFound(); // status 404 - not found zonder gegevens teruggeven
             }
             _repositoryManager.Employee.DeleteEmployee(employee);
             _repositoryManager.Save();
