@@ -86,12 +86,12 @@ namespace CompanyEmployees.Controllers
         {
             if (employeeDto == null)
             {
-                BadRequest("EmployeeForUpdateDto is empty");
+                return BadRequest("EmployeeForUpdateDto is empty");
             }
             var employee = _repositoryManager.Employee.GetEmployee(employeeId, true);
             if (employee == null)
             {
-                NotFound(); //404
+                return NotFound(); //404
             }
             employee.Name = employeeDto.Name;
             employee.Age = employeeDto.Age;
