@@ -221,18 +221,18 @@ namespace CompanyEmployees.API.Test
         public void UpdateEmployee_UnExistingEmployeeId_ReturnsNotFoundResult()
         {
             // Arrange 
-            Company companyToUpdate = SeedTestData.GetTestCompany();
+            Employee employeeToUpdate = SeedTestData.GetTestEmployee();
 
-            CompanyForUpdateDto companyForUpdateDto = null;
+           EmployeeForUpdateDto employeeForUpdateDto = null;
 
-            var controller = new CompaniesController(mockRepo.Object, _mapper);
+            var controller = new EmployeesController(mockRepo.Object, _mapper);
             // Act
-            var result = controller.UpdateCompany(companyToUpdate.Id, companyForUpdateDto);
+            var result = controller.UpdateEmployee(employeeToUpdate.Id, employeeForUpdateDto);
 
             // Assert
             Assert.IsInstanceOf<BadRequestObjectResult>(result);
 
-            mockRepo.Verify(repo => repo.Company.GetCompany(companyToUpdate.Id, true), Times.Never);
+            mockRepo.Verify(repo => repo.Employee.GetEmployee(employeeToUpdate.Id, true), Times.Never);
             mockRepo.Verify(repo => repo.Save(), Times.Never);
         }
     }
